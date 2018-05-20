@@ -29,8 +29,8 @@ def knn(data,k=3):
         final['dog']=[eucliDist(j,pre) for j in data['dog']]
         final['cat'] = [eucliDist(j, pre) for j in data['cat']]
 
-        sorted(final)
-        print(final)
+       final['dog']=sorted(final['dog'])
+       final['cat'] = sorted(final['cat'])
 
         print(min(final, key=final.get))
 
