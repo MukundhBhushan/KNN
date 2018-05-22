@@ -2,16 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
 
-style.use('fivethirtyeight')
+style.use('fivethirtyeight')  #for the grid effect on the plot
 
 data={'dog':[[13,4],[19,10],[12,5],[1,1],[16,17],[33,9]],
-      'cat': [[30, 40], [22, 52], [45, 50], [50, 34], [43, 44], [44, 33]]}
+      'cat': [[30, 40], [22, 52], [45, 50], [50, 34], [43, 44], [44, 33]]}    #toy dataset to diffrentiate betweeen dogs and cats
 
 
 
 
 def eucliDist(p1,p2):
-    return np.linalg.norm(np.array(p1)-np.array(p2))
+    return np.linalg.norm(np.array(p1)-np.array(p2))    #finding the euclidian distance between two points
 
 def data_plot():
     for i in data:
@@ -27,18 +27,18 @@ def draw_cicle(x,y,r):
 
 def knn(data,k=3):
 
-    x,y=int(input('enter the value of x: ')),int(input('enter the value y: '))
+    x,y=int(input('enter the value of x: ')),int(input('enter the value y: '))  #coordinates to check on
     r=0
     pre=[[x,y]]
 
     if len(data)>=k:
-        print("no!!!!")
+        print("no!!!!...Enter a value greater than 3")
         quit()
     else:
 
         final = {}
         final['dog'] = [[round(eucliDist(j, pre)), j] for j in data['dog']]
-        final['cat'] = [[round(eucliDist(j, pre)), j] for j in data['cat']]
+        final['cat'] = [[round(eucliDist(j, pre)), j] for j in data['cat']]    
 
         final['dog']=sorted(final['dog'])
         final['cat'] = sorted(final['cat'])
@@ -60,7 +60,7 @@ def knn(data,k=3):
             big_point.append(min_point)
             print(big_point)
 
-            while r <= eucliDist(min_point, pre) + 0.5:
+            while r <= eucliDist(min_point, pre) + 0.5:  #animation loop of tthe circle raduis increasing
                 plt.clf()
                 data_plot()
                 plt.scatter(x, y, color='r')#ref point
@@ -74,10 +74,10 @@ def knn(data,k=3):
                 r += 0.5
 
         for i in big_point:
-            bigpoint(i[0],i[1])
+            bigpoint(i[0],i[1])     # highlights all the possible points 
             #print(i)
         plt.show(plt_s())
 
 
-k=int(input('enter the value of k: '))
+k=int(input('enter the value of k: ')) #the number of neighbours to search for 
 knn(data,k=k)
